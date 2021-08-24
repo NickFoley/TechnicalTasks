@@ -3,6 +3,7 @@
  - Each task is contained within its own directory.
  - Every task has a md file containing assumptions that were made in absence of required information. 
  - All tasks were completed with Python 3.9.1 
+ - All Tasks have an image call OutputScreenshot, which is a screenshot showing the task being successfully executed.
 ## Task 1 
  ```
 Task 1 - Write a script in Python that prints the numbers from 1 to 75.
@@ -42,7 +43,7 @@ Have the endpoint use query strings to allow you to select a time period of up t
 - A requirements.txt file has been made define required dependencies. A venv can be setup and configured with:
 ```buildoutcfg
 python -m venv task3
-task2\Scripts\activate.bat
+task3\Scripts\activate.bat
 python -m pip install -r requirementlss.txt
 ```
 - Task 3 can then be run with
