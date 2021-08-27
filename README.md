@@ -22,12 +22,12 @@ https://services.swpc.noaa.gov/json/goes/primary/differential-protons-1-day.json
 Put into Pandas Dataframe
 Plot a 20 minute moving average against the raw inputs for p1
  ```
-- Task 2 has dependencies and a requirements.txt file has been produced.
-- A requirements.txt file has been made define required dependencies. A venv can be setup and configured with:
+- Task 2 has dependencies, as defined in the requirements.txt.
+- A venv can be setup and configured with:
 ```buildoutcfg
 python -m venv task2
 task2\Scripts\activate.bat
-python -m pip install -r requirementlss.txt
+python -m pip install -r requirements.txt
 ```
 - Task 2 can then be run with
 ```buildoutcfg
@@ -39,12 +39,12 @@ Task 3 - Create a single RESTful endpoint in Flask for delivering spwx data:
 Download https://services.swpc.noaa.gov/json/rtsw/rtsw_mag_1m.json to form a SQLite3 table.
 Have the endpoint use query strings to allow you to select a time period of up to an hour. Where the data is grouped into periods of 5 minute averages and returned via json.
  ```
-- Task 3 has dependencies and a requirements.txt file has been produced.
-- A requirements.txt file has been made define required dependencies. A venv can be setup and configured with:
+- Task 3 has dependencies, as defined in the requirements.txt
+- A venv can be setup and configured with:
 ```buildoutcfg
 python -m venv task3
 task3\Scripts\activate.bat
-python -m pip install -r requirementlss.txt
+python -m pip install -r requirements.txt
 ```
 - Task 3 can then be run with
 ```buildoutcfg

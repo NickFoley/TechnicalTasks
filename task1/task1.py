@@ -1,7 +1,7 @@
 # Task 1 - Evaluate the range of 1 to 75 and print "Mission"/"Control"/"Mission Control" pending the number.
 # For numbers divisible by 4 print "Mission".
 # For numbers divisible by 5 print "Control".
-# For numbers divisible by both 7 AND 5 print "Mission Control".
+# For numbers divisible by both 7 AND 4 print "Mission Control".
 
 # Take in a range of numbers and pending the number, print either the number, "Mission", "Control" or "Mission Control".
 def print_mission_control(number_range):
