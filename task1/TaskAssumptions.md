@@ -4,4 +4,5 @@
 - Should "Mission", "Control" or "MissionControl" be printed?
 
 #Assumption
+- It is not a typo.
 - That 4 should take preference over 5 and only print "Mission"
