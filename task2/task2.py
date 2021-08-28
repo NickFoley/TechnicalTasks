@@ -29,8 +29,8 @@ def load_json_data(json_url):
 
 if __name__ == '__main__':
     # Constants
-    # Rolling average of 20 Minutes. Every 1 sample is 5 minutes apart.
-    MOVING_AVERAGE = 5
+    # Rolling average of 20 Minutes. Every 1 sample is 5 minutes apart. 20/5 = average across 4 samples.
+    MOVING_AVERAGE = 4
     GOES_URL = 'https://services.swpc.noaa.gov/json/goes/primary/differential-protons-1-day.json'
 
     # Load file from local filesystem to increase testing speed.
