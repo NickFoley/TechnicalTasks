@@ -4,26 +4,41 @@ import sys
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import requests
 
 
-def load_json_data(json_file):
+# Get JSON data from json_url and load it into a Pandas DataFrame
+def load_json_data(json_url):
+    print("Attempting to retrieve GOES data ...")
     try:
-        df = pd.read_json(json_file)
-    except ValueError:
-        print(json_file + " is not found. Please check file exists and is named correctly.")
+        data = requests.get(json_url)
+        df = pd.DataFrame(data.json())
+    except Exception as E:
+        print("Failed to retrieve GOES data", E)
         sys.exit(1)
+    print("Data successfully received.")
+
+    # Uncomment to load proton data from local file instead of remotely.
+    # try:
+    #     df = pd.read_json(json_url)
+    # except ValueError:
+    #     print(json_url + " is not found. Please check file exists and is named correctly.")
+    #     sys.exit(1)
     return df
 
 
 if __name__ == '__main__':
-
-    # File path/name containing Proton JSON data.
-    PROTON_DATA_FILE = "differential-protons-1-day.json"
+    # Constants
     # Rolling average of 20 Minutes. Every 1 sample is 5 minutes apart.
     MOVING_AVERAGE = 5
+    GOES_URL = 'https://services.swpc.noaa.gov/json/goes/primary/differential-protons-1-day.json'
+
+    # Load file from local filesystem to increase testing speed.
+    # File path/name containing Proton JSON data.
+    # GOES_URL = "differential-protons-1-day.json"
 
     # Read in JSON to Panda DataFrame.
-    df = load_json_data(PROTON_DATA_FILE)
+    df = load_json_data(GOES_URL)
 
     # Set the DataFrame index to the datetime.
     df.set_index("time_tag", inplace=True)
@@ -40,6 +55,5 @@ if __name__ == '__main__':
     time_flux_average_df["moving_average"] = time_flux_df.flux.rolling(MOVING_AVERAGE, min_periods=1).mean()
 
     # Plot the rolling average and raw data against time
-    time_flux_average_df.plot()
+    time_flux_average_df.plot(xlabel='Datetime', ylabel='Flux', title='GOES 16 Proton Flux vs Datetime')
     plt.show()
-
