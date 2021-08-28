@@ -1,4 +1,19 @@
-# Task3
+# Task3 - An API endpoint for querying SWPC data from noaa between two times.
+# Live datetime SWPC JSON data is downloaded from https://services.swpc.noaa.gov/json/rtsw/rtsw_mag_1m.json.
+# The JSON data is resampled to provide averages in five minute blocks (12:00, 12:05, 12:10, ...) and stored in a SQLIte DB.
+# An API endpoint is created on localhost:5000 to allow the data to be queried and returned in JSON format.
+# The request window is a maximum of on hour.
+
+# Testing instructions
+# Install the Python dependencies defined in requirements.txt
+# Run the application/webserver with `python task3.ty'
+# Using a browser or curl/wget query the endpoint such as:
+#   http://127.0.0.1:5000/spwcdata/start_datetime/end_datetime
+# Replace the start and end datetime with a current/valid datetime and ensure the format "%Y-%m-%dT%H:%M:%S"
+# For example:
+#   http://127.0.0.1:5000/spwcdata/2021-08-27T11:30:00/2021-08-27T12:15:00
+# The queried data should be returned in valid, pretty printed JSON format.
+
 
 import os
 import sys
@@ -23,7 +38,6 @@ MAX_TIME_SPAN_SECONDS = 3600
 # Endpoint to return averaged (5min) data between start and end datetime.
 class SwpcAPI(Resource):
     def get(self, start_date_time, end_date_time):
-
         # Ensure correct DatTime Format "%Y-%m-%dT%H:%M:%S" to convert to our db format "%Y-%m-%d %H:%M:%S"
         start_time = pandas.to_datetime(start_date_time)
         end_time = pandas.to_datetime(end_date_time)
@@ -85,7 +99,7 @@ def create_swpc_db(db, swpc_json_data):
     try:
         df = pd.DataFrame(swpc_json_data)
 
-        # Below used for local filesystem testing
+        # Below can be used for local filesystem testing
         # df = pd.read_json("noaa.json")
 
         # Set the time_tag as correct type
@@ -124,9 +138,7 @@ def query_db_values(start_time, end_time, db):
         data_between_times = []
         for row in cur.fetchall():
             data_between_times.append(dict(zip(row_headers, row)))
-
         return data_between_times
-
     except Exception as E:
         print("Failed to connect", E)
         sys.exit(1)

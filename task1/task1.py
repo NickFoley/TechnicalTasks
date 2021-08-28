@@ -1,4 +1,4 @@
-# Task 1 - Evaluate the range of 1 to 75 and print "Mission"/"Control"/"Mission Control" pending the number.
+# Task 1 - Evaluates the range of 1 to 75 and print "Mission"/"Control"/"Mission Control" pending the number.
 # For numbers divisible by 4 print "Mission".
 # For numbers divisible by 5 print "Control".
 # For numbers divisible by both 7 AND 4 print "Mission Control".
